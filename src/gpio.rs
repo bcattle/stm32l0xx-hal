@@ -517,6 +517,20 @@ macro_rules! gpio {
                     }
                 }
 
+                impl $PXi<Analog> {
+                    /// Erases the pin number from the type
+                    ///
+                    /// This is useful when you want to collect the pins into an array where you
+                    /// need all the elements to have the same type
+                    pub fn downgrade(self) -> Pin<Analog> {
+                        Pin {
+                            i: $i,
+                            port: $GPIOX::ptr() as *const dyn GpioRegExt,
+                            _mode: self._mode,
+                        }
+                    }
+                }
+
                 impl<MODE> $PXi<Output<MODE>> {
                     /// Erases the pin number from the type
                     ///
