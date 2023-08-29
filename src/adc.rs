@@ -707,6 +707,22 @@ adc_pins! {
     Channel12: (gpioc::PC2<Analog>, 12u8),
 }
 
+#[cfg(all(
+    feature = "stm32l073",
+    any(
+        feature = "lqfp64",
+        feature = "lqfp100",
+        feature = "tfbga64",
+        feature = "ufbga100",
+        feature = "wlcsp49",
+    ),
+))]
+adc_pins! {
+    Channel10: (gpioc::PC0<Analog>, 10u8),
+    Channel11: (gpioc::PC1<Analog>, 11u8),
+    Channel12: (gpioc::PC2<Analog>, 12u8),
+}
+
 #[cfg(all(feature = "stm32l082", feature = "wlcsp49"))]
 adc_pins! {
     Channel10: (gpioc::PC0<Analog>, 10u8),
@@ -721,6 +737,14 @@ adc_pins! {
 
 #[cfg(all(
     feature = "stm32l072",
+    any(feature = "lqfp64", feature = "lqfp100", feature = "ufbga100",),
+))]
+adc_pins! {
+    Channel13: (gpioc::PC3<Analog>, 13u8),
+}
+
+#[cfg(all(
+    feature = "stm32l073",
     any(feature = "lqfp64", feature = "lqfp100", feature = "ufbga100",),
 ))]
 adc_pins! {
@@ -747,3 +771,18 @@ adc_pins! {
     Channel14: (gpioc::PC4<Analog>, 14u8),
     Channel15: (gpioc::PC5<Analog>, 15u8),
 }
+
+#[cfg(all(
+    feature = "stm32l073",
+    any(
+        feature = "lqfp64",
+        feature = "lqfp100",
+        feature = "tfbga64",
+        feature = "ufbga100",
+    ),
+))]
+adc_pins! {
+    Channel14: (gpioc::PC4<Analog>, 14u8),
+    Channel15: (gpioc::PC5<Analog>, 15u8),
+}
+
