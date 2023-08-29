@@ -708,7 +708,7 @@ adc_pins! {
 }
 
 #[cfg(all(
-    feature = "stm32l073",
+    feature = "stm32l0x3",
     any(
         feature = "lqfp64",
         feature = "lqfp100",
@@ -744,7 +744,7 @@ adc_pins! {
 }
 
 #[cfg(all(
-    feature = "stm32l073",
+    feature = "stm32l0x3",
     any(feature = "lqfp64", feature = "lqfp100", feature = "ufbga100",),
 ))]
 adc_pins! {
@@ -773,7 +773,7 @@ adc_pins! {
 }
 
 #[cfg(all(
-    feature = "stm32l073",
+    feature = "stm32l0x3",
     any(
         feature = "lqfp64",
         feature = "lqfp100",
