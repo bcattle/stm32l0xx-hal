@@ -28,9 +28,6 @@ use crate::gpio::{
     gpioe::{PE10, PE11, PE12, PE3, PE4, PE5, PE6, PE9},
 };
 
-// #[cfg(feature = "stm32l0x3")]
-// use crate::gpio::gpioe::{PE10, PE11, PE12, PE3, PE4, PE5, PE6, PE9};
-
 pub struct Timer<I> {
     instance: I,
 
@@ -329,7 +326,6 @@ impl_pin!(
     )
 );
 
-// #[cfg(feature = "stm32l072")]
 #[cfg(any(feature = "stm32l072", feature = "stm32l0x3"))]
 impl_pin!(
     TIM2: (
@@ -349,22 +345,6 @@ impl_pin!(
         PE6, C4, AF2;
     )
 );
-
-// #[cfg(feature = "stm32l0x3")]
-// impl_pin!(
-//     TIM2: (
-//         PE9,  C1, AF0;
-//         PE10, C2, AF0;
-//         PE11, C3, AF0;
-//         PE12, C4, AF0;
-//     )
-//     TIM3: (
-//         PE3, C1, AF2;
-//         PE4, C2, AF2;
-//         PE5, C3, AF2;
-//         PE6, C4, AF2;
-//     )
-// );
 
 /// Indicates that a PWM channel has not been assigned to a pin
 pub struct Unassigned;
