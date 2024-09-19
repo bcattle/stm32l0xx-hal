@@ -794,18 +794,3 @@ adc_pins! {
     Channel14: (gpioc::PC4<Analog>, 14u8),
     Channel15: (gpioc::PC5<Analog>, 15u8),
 }
-
-#[cfg(all(
-    feature = "stm32l0x3",
-    any(
-        feature = "lqfp64",
-        feature = "lqfp100",
-        feature = "tfbga64",
-        feature = "ufbga100",
-    ),
-))]
-adc_pins! {
-    Channel14: (gpioc::PC4<Analog>, 14u8),
-    Channel15: (gpioc::PC5<Analog>, 15u8),
-}
-
