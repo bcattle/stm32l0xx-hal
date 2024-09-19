@@ -1,4 +1,5 @@
 use crate::gpio::gpioa::{PA0, PA1, PA2, PA3};
+use crate::gpio::gpioe::PE9;
 use crate::gpio::{
     gpioa::{PA15, PA5},
     gpiob::PB3,
@@ -27,6 +28,9 @@ use crate::gpio::{
     gpioc::{PC6, PC7, PC8, PC9},
     gpioe::{PE10, PE11, PE12, PE3, PE4, PE5, PE6, PE9},
 };
+
+#[cfg(feature = "stm32l073")]
+use crate::gpio::gpioe::{PE9, PE10, PE11};
 
 pub struct Timer<I> {
     instance: I,
@@ -303,6 +307,15 @@ impl_pin!(
         PA5,  C1, AF5;
         PA15, C1, AF5;
         PB3,  C2, AF2;
+    )
+);
+
+#[cfg(any(feature = "stm32l0x3"))]
+impl_pin!(
+    TIM2: (
+        PE9, C1, AF0;
+        PE10, C2, AF0;
+        PE11, C3, AF0;
     )
 );
 
