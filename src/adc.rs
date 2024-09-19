@@ -742,6 +742,8 @@ adc_pins! {
     Channel10: (gpioc::PC0<Analog>, 10u8),
     Channel11: (gpioc::PC1<Analog>, 11u8),
     Channel12: (gpioc::PC2<Analog>, 12u8),
+    Channel14: (gpioc::PC4<Analog>, 14u8),
+    Channel15: (gpioc::PC5<Analog>, 15u8),
 }
 
 #[cfg(all(feature = "stm32l082", feature = "wlcsp49"))]
