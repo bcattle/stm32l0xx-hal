@@ -38,6 +38,9 @@ pub struct PullUp;
 /// Open drain input or output (type state)
 pub struct OpenDrain;
 
+/// Open drain input or output (type state)
+pub struct OpenDrainPullUp;
+
 /// Analog mode (type state)
 pub struct Analog;
 
@@ -172,6 +175,13 @@ impl PinMode for Output<OpenDrain> {
     const OTYPER: Option<u8> = Some(0b1);
 }
 
+impl sealed::Sealed for Output<OpenDrainPullUp> {}
+impl PinMode for Output<OpenDrainPullUp> {
+    const PUPDR: u8 = 0b01;
+    const MODER: u8 = 0b01;
+    const OTYPER: Option<u8> = Some(0b1);
+}
+
 impl sealed::Sealed for Output<PushPull> {}
 impl PinMode for Output<PushPull> {
     const PUPDR: u8 = 0b00;
@@ -249,7 +259,7 @@ macro_rules! gpio {
             use crate::pac::$GPIOX;
             use crate::rcc::{Enable, Rcc};
             use super::{
-                Floating, GpioExt, Input, OpenDrain, Output, Speed,
+                Floating, GpioExt, Input, OpenDrain, OpenDrainPullUp, Output, Speed,
                 PullDown, PullUp, PushPull, AltMode, Analog, Port,
                 PinMode, Pin, GpioRegExt
             };
@@ -404,6 +414,16 @@ macro_rules! gpio {
                         mut self,
                     ) -> $PXi<Input<PullUp>> {
                         self.mode::<Input<PullUp>>();
+                        $PXi {
+                            _mode: PhantomData
+                        }
+                    }
+
+                    /// Configures the pin to operate as a pulled-up input pin.
+                    pub fn into_open_drain_pull_up_output(
+                        mut self,
+                    ) -> $PXi<Output<OpenDrainPullUp>> {
+                        self.mode::<Output<OpenDrainPullUp>>();
                         $PXi {
                             _mode: PhantomData
                         }
